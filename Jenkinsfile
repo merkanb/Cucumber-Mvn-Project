@@ -19,14 +19,14 @@ pipeline {
     }
     
     stages {
-        stage('Initialize') {
-            steps {
-                sh '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
-                '''
-            }
-        }
+        // stage('Initialize') {
+        //     steps {
+        //         sh '''
+        //             echo "PATH = ${PATH}"
+        //             echo "M2_HOME = ${M2_HOME}"
+        //         '''
+        //     }
+        // }
         stage('Build') {
             steps {
                 sh "mvn -f pom.xml -B -DskipTests clean package"
@@ -41,7 +41,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh "mvn -f pom.xml test"
-                sh "mvn clean verify -Dcucumber.filter.tags='$params.TagName' -DfailIfNoTests=false"
+                sh "mvn clean verify -Dcucumber.filter.tags='%TagName%' -DfailIfNoTests=false"
             }
 //             post {
 //                 always {
