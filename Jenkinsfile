@@ -27,17 +27,17 @@ pipeline {
         //         '''
         //     }
         // }
-        stage('Build') {
-            steps {
-                sh "mvn -f pom.xml -B -DskipTests clean package"
-            }
-            post {
-                success {
-//                     echo "Now Archiving the Artifacts....."
-                    archiveArtifacts artifacts: '**/*.jar'
-                }
-            }
-        }
+//         stage('Build') {
+//             steps {
+//                 sh "mvn -f pom.xml -B -DskipTests clean package"
+//             }
+//             post {
+//                 success {
+// //                     echo "Now Archiving the Artifacts....."
+//                     archiveArtifacts artifacts: '**/*.jar'
+//                 }
+//             }
+//         }
         stage('Test') {
             steps {
                 sh "mvn -f pom.xml test"
